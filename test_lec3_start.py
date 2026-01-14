@@ -1,30 +1,52 @@
 '''
-    CS2100
-    Spring 2026
-    Sample code from class - unittest for our functions
+CS2100
+Spring 2026
+Sample code from class - unittest for our runner-mileage functions
+To end on 1/12, and to start class on 1/14, we have:
+* testing generate stats function with basic info (miles are 1, 2, 3 or 1, 1,
+1)
+* testing generate stats function with zeroes for mileage (miles are 0, 0, 0,
+or just 0)
+We need to add on:
+* testing generate stats function on an empty input or None (should return
+zeroes)
+* testing generate stats function on negative mileage (should raise an error)
 '''
 
 import unittest
-from lec3_start import generate_mileage_stats
-# import module and functions to test
+from lec3_finished import generate_mileage_stats
 
 class TestRunners(unittest.TestCase):
-    ''' test the functions defined in lec3_v2_dictionaries '''
+    ''' test the functions defined in lec3_start '''
+    
+    def test_generate_stats_basic(self) -> None:
+        test_dct = {"a" : 1.0, "b" : 2.0, "c" : 3.0}
+        expected = {"total miles" : 6, "avg daily" : 2}
 
-    def test_generate_milage_stats(self) -> None:
-        test_lst = [1, 2, 3]
-        expected = {"total miles" : 6, "avg miles" : 2}
-        actual = generate_mileage_stats(test_lst)
+        actual = generate_mileage_stats(test_dct)
         self.assertEqual(expected, actual)
 
-        # other tests
-        self.assertEqual({"total miles" : 0, "avg daily" : 0}, 
-                         generate_milage_stats([0]))
+        test_dct["b"] = 1.0
+        test_dct["c"] = 1.0
+        expected["total miles"] = 3
+        expected["avg daily"] = 1
+        self.assertEqual(expected, generate_mileage_stats(test_dct))
 
-        # self.assertEqual(functioncall, expected output)
-        # self.assertEqual(functioncall, expected output)
-        # self.assertEqual(functioncall, expected output)
+    def test_generate_stats_zeroes(self) -> None:
+        ''' given a dictionary with zeroes for mileage, we should return 0 for
+        stats '''
+        expected = {"total miles" : 0, "avg daily" : 0}
+        self.assertEqual(expected, generate_mileage_stats({"1" : 0.0}))
+        self.assertEqual(expected, generate_mileage_stats({"a" : 0.0, "b" : 0.0}))
 
+    def test_generate_stats_empty(self) -> None:
+        ''' given an empty dictoinary for mileage or None, we should return a
+        dictionary with zeroes '''
+        pass
+
+    def test_generate_stats_negative(self) -> None:
+        ''' given a dictionary with negative miles, we should raise an error '''
+        pass
 
 if __name__ == "__main__":
     unittest.main()
