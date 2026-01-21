@@ -1,16 +1,39 @@
 '''
    CS2100
    Spring 2026
-   Starter code for class on 1/14/26
+   Finished code from class -- 1/12/26
 
-   This is roughly the same as the code we finished with on Monday 1/12, except...
-   * Dictionaries instead of lists are everywhere (gather_mileage_input, and 
-    generate_mileage_stats)
-    * A new function just prints out the summary for a given runner.
+    This program prompts the user for the daily mileage of two runners and compares them.
 
-    On Wednesday 1/14, we want to add to generate_mileage_stats:
-    * in case of an empty dictionary or None, return None
-    * in case of negative miles, raise an error
+    In class, we changed a list into a dictionary, where we went from:
+    * stats[0] = total mileage
+    * stats[1] = avg daily mileage
+    to a dictionary with:
+    * stats["total miles"] = total mileage
+    * stats["avg daily"] = avg daily mileage
+
+    Before posting this code, Laney also changed the othere lists into dictionaries, so we have:
+    * laney_stats["date"] = miles on that date
+    * nate_stats["date"] = miles on that date
+
+    For testing generate_mileage_stats...
+    * basic cases are ok :)
+    * how should we handle empty input?
+    * how should we handle negative miles?
+
+    For wednesday 1/13, we will consider edge cases of an empty input, or negative miles. 
+    We'll also write a function to generate the report, and test that too.
+    
+    Empty input options...
+    * Python raises an error
+    **** We raise an error (better error message)
+    **** Return zeroes {"total" : 0, "avg" : 0}
+    * Return None
+
+    Negative miles options...
+    ***** we raise an error
+    * return None
+    * leave it as-is (do the computation with negatives)
 '''
 
 def gather_mileage_input(name: str, dates: list[str]) -> dict[str, float]:
@@ -48,19 +71,6 @@ def generate_mileage_stats(miles: dict[str, float]) -> dict[str, float]:
     stats["avg daily"] = sum(miles.values()) / len(miles.values())
     return stats
 
-def print_summary(name: str, stats: dict[str, float]) -> None:
-    ''' print a summary of the stats in the given dictionary 
-    
-        parameters:
-            name (str), the name of the runner
-            stats (dict of str, float), the stats for the runner's summary
-        returns:
-            none, just prints
-    '''
-    print(f"Running stats for {name}:")
-    for key, value in stats.items():
-        print(f"{key}...{value}")
-    print()
 
 def main() -> None:
     ''' create lists for Laney and Nate's last week of running and compute stats about them '''
@@ -73,9 +83,13 @@ def main() -> None:
     laney_stats = generate_mileage_stats(laney_miles)
     nate_stats = generate_mileage_stats(nate_miles)
 
-    # Report the stats from their dictionaries
-    print_summary("Laney", laney_stats)
-    print_summary("Nate", nate_stats)
+    # Report the stats from their dictionaries (repeated code here though :( Maybe a function is better?)
+    print("Laney's running stats...")
+    for key, value in laney_stats.items():
+        print(f"{key}...{value}")
+    print("Nate's running stats...")
+    for key, value in nate_stats.items():
+        print(f"{key}...{value}")
 
      # follow-up on a specific date, what does the user want to know?
     month, day = input("Which day do you want to know about? Enter as MMM DD\n").upper().split()

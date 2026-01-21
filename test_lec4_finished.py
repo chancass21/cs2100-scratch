@@ -8,7 +8,7 @@
     * testing generate stats function with zeroes for mileage (miles are 0, 0, 0, or just 0)
     
     We need to add on:
-    * testing generate stats function on an empty input or None (should return None)
+    * testing generate stats function on an empty input or None (should return zeroes)
     * testing generate stats function on negative mileage (should raise an error)
 
     We also want to try testing another function in the starter file,
@@ -17,7 +17,9 @@
 '''
 
 import unittest
-from lec4_start import generate_mileage_stats
+from unittest.mock import patch
+from io import StringIO
+from lec4_start import generate_mileage_stats, print_summary
 
 class TestRunners(unittest.TestCase):
     ''' test the functions defined in lec3_start '''
@@ -25,7 +27,7 @@ class TestRunners(unittest.TestCase):
         ''' test your everyday basic mileage '''
         test_dct = {"a" : 1.0, "b" : 2.0, "c" : 3.0}
         expected = {"total miles" : 6, "avg daily" : 2}
-        
+
         actual = generate_mileage_stats(test_dct)
         self.assertEqual(expected, actual)
 
@@ -40,17 +42,26 @@ class TestRunners(unittest.TestCase):
         expected = {"total miles" : 0, "avg daily" : 0}
         self.assertEqual(expected, generate_mileage_stats({"1" : 0.0}))
         self.assertEqual(expected, generate_mileage_stats({"a" : 0.0, "b" : 0.0}))
-    
+
     def test_generate_stats_empty(self) -> None:
         ''' given an empty dictionary for mileage or None, we should return None '''
-        pass
-                         
+        self.assertIsNone(generate_mileage_stats({}))
+        self.assertIsNone(None)
+
     def test_generate_stats_negative(self) -> None:
         ''' given a dictionary with negative miles, we should raise an error '''
-        pass
-    
+        with self.assertRaises(ValueError):
+            generate_mileage_stats({"a" : -1})
+        with self.assertRaises(ValueError):
+            generate_mileage_stats({"a" : 1, "b" : -5})
 
+    @patch("sys.stdout", new_callable = StringIO)
+    def test_print_summary(self, mock_stdout) -> None:
+        ''' test the print_summary function which prints but does not return '''
+        print_summary("Laney", {"X" : 1.5})
 
+        output = mock_stdout.getvalue()
+        self.assertIn("Running stats for Laney:\nX...1.5", output)
 
 if __name__ == "__main__":
     unittest.main()
