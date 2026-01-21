@@ -19,6 +19,34 @@
 
 from typing import Optional
 
+LANEYFILE = "laney_stats.txt"
+NATEFILE = "nate_stats.txt"
+
+def read_mileage_input(filename: str) -> dict[str, float]:
+    """
+        reads user mileage data from a file, and creat and return 
+        a dictionary where keys = dates and values = miles 
+        Expected file format - eaxctly two lines, comma separated values 
+        date, date, date 
+        mile, mile, mile
+
+        Parameters: 
+            filename, a string, the anme of the file to read
+        Returns: 
+            dictionary of [str, float] where str = date, float = miles
+    """
+    with open(filename, "r", encoding = "utf-8") as infile:
+        dateline = infile.readline()
+        mileline = infile.readline()
+        dates = dateline.split(",")
+        miles = mileline.split(",")
+
+        data = {}
+        for date, mile in zip(dates, miles):
+            data[date] = float(mile)
+        return data
+
+ 
 def gather_mileage_input(name: str, dates: list[str]) -> dict[str, float]:
     ''' prompt the user to enter mileage information, validating values >= 0
   
@@ -78,33 +106,37 @@ def print_summary(name: str, stats: dict[str, float]) -> None:
 
 def main() -> None:
     ''' create lists for Laney and Nate's last week of running and compute stats about them '''
+    laney_miles = read_mileage_input(LANEYFILE)
+    print(laney_miles)
 
-    dates = ["JAN 07", "JAN 08", "JAN 09", "JAN 10", "JAN 11"]
-    laney_miles = gather_mileage_input("Laney", dates)
-    nate_miles = gather_mileage_input("Nate", dates)
 
-    # Compute basic stats about the week of running for each person
-    laney_stats = generate_mileage_stats(laney_miles)
-    nate_stats = generate_mileage_stats(nate_miles)
+#     dates = ["JAN 07", "JAN 08", "JAN 09", "JAN 10", "JAN 11"]
+#     laney_miles = gather_mileage_input("Laney", dates)
+#     nate_miles = gather_mileage_input("Nate", dates)
 
-    # Report the stats from their dictionaries
-    if laney_stats:
-        print_summary("Laney", laney_stats)
-    if nate_stats:
-        print_summary("Nate", nate_stats)
+#     # Compute basic stats about the week of running for each person
+#     laney_stats = generate_mileage_stats(laney_miles)
+#     nate_stats = generate_mileage_stats(nate_miles)
 
-     # follow-up on a specific date, what does the user want to know?
-    month, day = input("Which day do you want to know about? Enter as MMM DD\n").upper().split()
-    while not month.isalpha() or not day.isdigit():
-        month, day = input("Please enter as MMM DD\n").upper().split()
+#     # Report the stats from their dictionaries
+#     if laney_stats:
+#         print_summary("Laney", laney_stats)
+#     if nate_stats:
+#         print_summary("Nate", nate_stats)
 
-    date = " ".join([month, f"{int(day):02d}"])
-    if date not in dates:
-        print(f"Sorry, we don't have data for {date}\n")
-        return
+#      # follow-up on a specific date, what does the user want to know?
+#     month, day = input("Which day do you want to know about? Enter as MMM DD\n").upper().split()
+#     while not month.isalpha() or not day.isdigit():
+#         month, day = input("Please enter as MMM DD\n").upper().split()
 
-    print(f"Laney's mileage that day: {laney_miles[date]}")
-    print(f"Nate's mileage that day: {nate_miles[date]}")
+#     date = " ".join([month, f"{int(day):02d}"])
+#     if date not in dates:
+#         print(f"Sorry, we don't have data for {date}\n")
+#         return
+
+#     print(f"Laney's mileage that day: {laney_miles[date]}")
+#     print(f"Nate's mileage that day: {nate_miles[date]}")
 
 if __name__ == "__main__":
     main()
+
