@@ -22,6 +22,7 @@ from typing import Optional
 LANEYFILE = "laney_stats.txt"
 NATEFILE = "nate_stats.txt"
 
+# Today
 def read_mileage_input(filename: str) -> dict[str, float]:
     """
         reads user mileage data from a file, and creat and return 
@@ -38,6 +39,10 @@ def read_mileage_input(filename: str) -> dict[str, float]:
     with open(filename, "r", encoding = "utf-8") as infile:
         dateline = infile.readline()
         mileline = infile.readline()
+
+        if not dateline or not mileline:
+            raise IOError("Files did not have sufficient data.")
+        
         dates = dateline.split(",")
         miles = mileline.split(",")
 
