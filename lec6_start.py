@@ -77,7 +77,7 @@ def list_to_sets(lst: Optional[list[list[str]]]) -> Optional[dict[str, set[str]]
     dct = {}
     for row in lst:
         key = row[0]
-        value = set(row(1:))
+        value = set(row[1:])
         dct[key] = value
     return dct
 
