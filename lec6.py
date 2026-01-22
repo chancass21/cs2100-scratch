@@ -34,11 +34,11 @@ self.assertEqual(expected, actual)
 
 
 start_list1 = ["a","b", "c"]
-expected1 = {"a" : {"b", "c"}}
+expected1 = {"a": {"b", "c"}}
 actual1 = list_to_sets(start_list2)
 self.assertEqual(expected1, actual1)
 
 start_list2 = [["a", "b", "c"], ["d", "e", "f"]]
-expected2 = {"a" : {"b", "c"}, "d" : {"e", "f"}}
+expected2 = {"a": {"b", "c"}, "d": {"e", "f"}}
 actual2 = list_to_sets(start_list)
 self.assertEqual(expected2, actual2)
