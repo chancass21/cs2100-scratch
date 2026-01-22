@@ -1,6 +1,6 @@
 """Lecture 6 - Team 1 Sets"""
 
-empty_set = set()
+s = set()
 s = {1, 2, 3}
 s.add(4)
 s.remove(2)
@@ -8,7 +8,7 @@ s.remove(2)
 # s[0] = 4 doesn't work
 # s now has {1, 3, 4}
 
-s = {(1, 2), (3, 4)} # set of tuples
+s_a = {(1, 2), (3, 4)} # set of tuples
 
 # can't create a list of sets
 # can't create a set of sets
