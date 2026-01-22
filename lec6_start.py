@@ -49,7 +49,14 @@ def list_to_tuples(lst: Optional[list[list[str]]]) -> Optional[list[tuple[str, .
             if input is None or contains any empty sublists.
 
     '''
-    pass
+    if not list:
+        return None
+    
+    tuples = []
+    for row in lst:
+        t = tuple(row)
+        tuples.append(t)
+    return tuples 
 
 def list_to_sets(lst: Optional[list[list[str]]]) -> Optional[dict[str, set[str]]]:
     ''' convert a 2d list of strings to a dictionary of sets of strings
@@ -61,8 +68,18 @@ def list_to_sets(lst: Optional[list[list[str]]]) -> Optional[dict[str, set[str]]
         Returns dict[str, set[str]]]: optional dictionariy with key = str
                 and value = set of strings. Or None, if input is None or contains 
                 any empty sublists.
+        
+                if not lst --- lst is None, lst = []
         '''
-    pass
+    if not lst:
+        return None
+
+    dct = {}
+    for row in lst:
+        key = row[0]
+        value = set(row(1:))
+        dct[key] = value
+    return dct
 
 
 def main() -> None:

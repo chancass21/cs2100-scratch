@@ -73,7 +73,20 @@ class TestFileIO(unittest.TestCase):
         with open("dummy_file_empty.txt", "w", encoding = "utf-8") as f:
             pass
 
-    def tearDown(self):
+    def test_read_file_to_list(self) -> None:
+        '''test our function that reads from file to a 2d list'''
+        file = "dummy_file_simple.txt"
+        expected = [["Date", "Jan1", "Jan2"],
+                    ["Miles", "1", "3"],
+                    ["Pace", "6.2", "4.4"]]
+        actual = read_file_to_list(file)
+        self.assertEqual(expected, actual)
+
+        file = "dummy_file_empty.txt"
+        actual = read_file_to_list(file)
+        
+
+    def tearDown(self) -> None:
         ''' clean up test files '''
         test_files = ["dummy_file_simple.txt", "dummy_file_medium.txt",
                       "dummy_file_training.txt", "dummy_file_empty.txt"]
