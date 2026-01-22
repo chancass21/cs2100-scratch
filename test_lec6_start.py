@@ -10,6 +10,7 @@ import os
 from lec6_start import read_file_to_list, list_to_tuples, list_to_sets
 
 class TestDataStructures(unittest.TestCase):
+    """Tests lists to tuples and sets"""
     def test_list_to_tuples_basic(self) -> None:
         ''' test conversion from 2d list to list of tuples, easy cases '''
         start_list = [["a"], ["b"], ["c"]]
@@ -56,6 +57,7 @@ class TestDataStructures(unittest.TestCase):
                     
 
 class TestFileIO(unittest.TestCase):
+    """Tests how file is read"""
     def setUp(self) -> None:
         ''' create test files before testing the file functions '''
         with open("dummy_file_simple.txt", "w", encoding = "utf=8") as f:
@@ -84,7 +86,7 @@ class TestFileIO(unittest.TestCase):
 
         file = "dummy_file_empty.txt"
         actual = read_file_to_list(file)
-        
+        self.assertEqual(expected, actual)
 
     def tearDown(self) -> None:
         ''' clean up test files '''
@@ -93,11 +95,8 @@ class TestFileIO(unittest.TestCase):
         
         for file in test_files:
             if os.path.exists(file):
-                os.remove(file)
-    
-
+                os.remove(file)   
 
 
 if __name__ == "__main__":
     unittest.main()
-
