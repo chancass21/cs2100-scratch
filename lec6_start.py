@@ -49,7 +49,7 @@ def list_to_tuples(lst: Optional[list[list[str]]]) -> Optional[list[tuple[str, .
             if input is None or contains any empty sublists.
 
     '''
-    if not list:
+    if not lst or any(not row for row in lst):
         return None
     
     tuples = []
