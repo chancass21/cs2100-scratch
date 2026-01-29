@@ -34,6 +34,7 @@ import pandas as pd
 
 # 3. how big is the dataframe? how many rows/columns?
 
+# 191 x 16
 
 # 4. what are the names of the columns in the dataframe? 
 
