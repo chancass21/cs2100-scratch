@@ -31,6 +31,7 @@ import pandas as pd
 
 # 2. what's in the dataframe?
 
+# Information about each game, like points, location, date, and goals.
 
 # 3. how big is the dataframe? how many rows/columns?
 
@@ -38,9 +39,11 @@ import pandas as pd
 
 # 4. what are the names of the columns in the dataframe? 
 
+# id,season_id,game_number,date,home_team,visiting_team,home_goal_count,visiting_goal_count,periods,overtime,shootout,status,game_status,venue_name,venue_location,attendance
 
 # 5. what are the datatypes of the columns?
 
+# Strings and floats/ints
 
 #######################################################
 #
