@@ -65,16 +65,17 @@ print(df.dtypes)
 
 # 6. ask the user for a column name and tell them if it's there
 col = input("What column are you looking for?\n")
-if True:
+if col in df.columns:
     print(df[col])
 else:
-    print("{col} does not exist")
+    print(f"{col} does not exist")
 
 # 7. make a copy of the dataframe. (bonus question: why??)
 df_copy = df.copy()
 
 # 8. add a new column that has total goals (instead of home goals, visit goals)
 df_copy["total_goals"] = df_copy["home_goal_count"] + df_copy["visiting_goal_count"]
+print("\n printing out just the columns I like from my dataframe.")
 print(df_copy[["total_goals", "home_goal_count", "visting_goal_count"]])
 
 # 9. how many games went into overtime?
