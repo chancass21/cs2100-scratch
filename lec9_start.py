@@ -65,8 +65,13 @@ print(df.dtypes)
 
 # 6. ask the user for a column name and tell them if it's there
 col = input("What column are you looking for?\n")
+if True:
+    print(df[col])
+else:
+    print(f"true")
 
 # 7. make a copy of the dataframe. (bonus question: why??)
+df_copy = df.copy()
 
 # 8. add a new column that has total goals (instead of home goals, visit goals)
 
