@@ -68,14 +68,18 @@ col = input("What column are you looking for?\n")
 if True:
     print(df[col])
 else:
-    print(f"true")
+    print("{col} does not exist")
 
 # 7. make a copy of the dataframe. (bonus question: why??)
 df_copy = df.copy()
 
 # 8. add a new column that has total goals (instead of home goals, visit goals)
+df_copy["total_goals"] = df_copy["home_goal_count"] + df_copy["visiting_goal_count"]
+print(df_copy[["total_goals", "home_goal_count", "visting_goal_count"]])
 
 # 9. how many games went into overtime?
+overtimes = len(df_copy[df_copy["overtime"] > 0])
+print(overtime)
 
 # 10. how many times were there 0 total goals in a game? 1? 2? 3? ...
 
