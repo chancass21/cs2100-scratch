@@ -79,7 +79,7 @@ print("\n printing out just the columns I like from my dataframe.")
 print(df_copy[["total_goals", "home_goal_count", "visting_goal_count"]])
 
 # 9. how many games went into overtime?
-overtimes = len(df_copy[df_copy["overtime"] > 0])
+overtime = len(df_copy[df_copy["overtime"] > 0])
 print(overtime)
 
 # 10. how many times were there 0 total goals in a game? 1? 2? 3? ...
