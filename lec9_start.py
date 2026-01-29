@@ -27,23 +27,35 @@ import pandas as pd
 #######################################################
 
 # 1. read all_games.csv into a dataframe
-df = pd.read_csv("all_games.csv")
+GAMEFILE = "all_games.csv"
+df = pd.read_csv(GAMEFILE, encoding = "utf")
 
 # 2. what's in the dataframe?
 
 # Information about each game, like points, location, date, and goals.
+print("Print the dataframe...")
+print(df) 
+print("\nPrint the first 10 rows of the dataframe.")
+print(df.head(10))
 
 # 3. how big is the dataframe? how many rows/columns?
 
 # 191 x 16
+print("\nPrinting out df.shape (rows first, columns second)")
+print(df.shape)
 
 # 4. what are the names of the columns in the dataframe? 
 
 # id,season_id,game_number,date,home_team,visiting_team,home_goal_count,visiting_goal_count,periods,overtime,shootout,status,game_status,venue_name,venue_location,attendance
+print("\nWhat columns do I have?")
+print(df.columns)
 
 # 5. what are the datatypes of the columns?
 
 # Strings and floats/ints
+print("\nWhat datatypes do I have?")
+print(df.dtypes)
+
 
 #######################################################
 #
