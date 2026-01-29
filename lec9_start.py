@@ -27,7 +27,7 @@ import pandas as pd
 #######################################################
 
 # 1. read all_games.csv into a dataframe
-df = pd.read_csv(all_games.csv)
+df = pd.read_csv("all_games.csv")
 
 # 2. what's in the dataframe?
 
