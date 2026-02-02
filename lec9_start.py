@@ -100,20 +100,25 @@ print(f"Datafram sorted by date... {sorted_df[["date", "attendance"]].head()}")
 #######################################################
 
 # 12. filter the dataframe so we just see the rows where total goals were 0
+sorted_df = df_copy.sort_values(by = ["date", "attendance"], 
+                                ascending = [True, False])
 
 
 # 13. filter the dataframe so we just see boston vs new york
 # (either could be home/visiting)
 # (boston team is 1, NY is 4)
-
+if ... :
+    print("\nThis column is ints!")
+else:
+    print("\nColumn was expected to be ints, but is not :(")
 
 # 14. Print out boston vs new york, but only some of the columns, so we see
 # who was the home team, how many goals the home team had, how many goals the visiting
 # team had. 
-
+game_length = {3 : "standard", 4 : "one ot", 5 : "two ot", 6 : "three ot"}
 
 # 15. How many games had boston vs new york?
-
+teams = [1,4]
 
 # 16. how many of those games did boston win?
 
