@@ -86,8 +86,12 @@ print(overtime)
 zero_goals = len(df_copy[df_copy["total_goals"] == 0])
 print(f"\nUsing a filter, we had zero goals this many times... {zero_goals}")
 
-# 11. can we sort the dataframe by date?
+print("\nUsing value_counts(), how many times did we have any # of goals?\n")
+print(df_copy["total_goals"].value_counts())
 
+# 11. can we sort the dataframe by date?
+sorted_df = df_copy.sort_values(by = "date")
+print(f"Datafram sorted by date... {sorted_df[["date", "attendance"]].head()}")
 
 #######################################################
 #
