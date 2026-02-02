@@ -19,6 +19,8 @@
 '''
 
 import pandas as pd
+from pandas.api.types import is_integer_dtype
+import numpy as np
 
 #######################################################
 #
@@ -104,22 +106,26 @@ sorted_df = df_copy.sort_values(by = ["date", "attendance"],
                                 ascending = [True, False])
 
 
-# 13. filter the dataframe so we just see boston vs new york
+# 13. Validate - is the periods "column" all integers?
 # (either could be home/visiting)
-# (boston team is 1, NY is 4)
-if ... :
+if is_integer_dtype(df_copy["periods"]):
     print("\nThis column is ints!")
 else:
     print("\nColumn was expected to be ints, but is not :(")
 
-# 14. Print out boston vs new york, but only some of the columns, so we see
-# who was the home team, how many goals the home team had, how many goals the visiting
-# team had. 
+# 14. we currently have periods (normally 3, but could be 4, 5, or 6). 
+# # add a new column, game_length, n, using the following dictionary and map()
 game_length = {3 : "standard", 4 : "one ot", 5 : "two ot", 6 : "three ot"}
 
-# 15. How many games had boston vs new york?
+
+# 15. Filter the dataframe so we just see Boston vs New York
+# (either could be home/visiting)
+# (Boston team is 1, NY is 4)
 teams = [1,4]
 
-# 16. how many of those games did boston win?
-
+# 16. Pick a couple of columns and see if they correlate or nah
+r = np.corrcoef(df_copy["attendance"], df_copy["home_goal_count"])
+print("The r value of attendance, home goal count... numpy gives us"
+      "a table [[a,b], [c, d]], am d are both 1, 0, b, c are both the"
+      "correlation coefficient between attendance and goals\n")
 
