@@ -83,8 +83,11 @@ overtime = len(df_copy[df_copy["overtime"] > 0])
 print(overtime)
 
 # 10. how many times were there 0 total goals in a game? 1? 2? 3? ...
+zero_goals = len(df_copy[df_copy["total_goals"] == 0])
+print(f"\nUsing a filter, we had zero goals this many times... {zero_goals}")
 
 # 11. can we sort the dataframe by date?
+
 
 #######################################################
 #
