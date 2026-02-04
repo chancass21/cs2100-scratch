@@ -18,7 +18,8 @@
 
 '''
 
-from typing import Optional
+from typing import Optional, Any
+from collections.abc import Callable
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -26,23 +27,26 @@ import matplotlib.pyplot as plt
 
 GAMEFILE = "all_games.csv"
 
-# def plot_hockey_v1():
-'''
-        V1 of plotting some hockey data. In this version, our function
-        takes in just y_values as a parameter, a pd.Series, 
-        plus the particular plotting function to use. This version's constraints:
-            1. can only do plot functions that take y_values only, with no 
-               x_values (plt.plot() and plt.hist())
-            2. no customizations are included here, it just plots the line
-            
-        Params:
-            y_values (pd.Series), the y values to plot
-            plot_func (Callable[..., Any]), the matplotlib function to use for plotting,
-                defaults to plt.plot
-        
-        Returns: 
-            none, just plots
+def plot_hockey_v1(y_values: pd.Series, plot_func: Callable[..., Any] = plt.plot) -> None:
     '''
+            V1 of plotting some hockey data. In this version, our function
+            takes in just y_values as a parameter, a pd.Series, 
+            plus the particular plotting function to use. This version's constraints:
+                1. can only do plot functions that take y_values only, with no 
+                x_values (plt.plot() and plt.hist())
+                2. no customizations are included here, it just plots the line
+                
+            Params:
+                y_values (pd.Series), the y values to plot
+                plot_func (Callable[..., Any]), the matplotlib function to use for plotting,
+                    defaults to plt.plot
+            
+            Returns: 
+                none, just plots
+    '''
+    plot_func(y_values)
+    plt.
+
 
 
 # def plot_hockey_v2():
@@ -115,17 +119,17 @@ def main() -> None:
     # we can call this twice -- once to make a histogram and once to make
     # a line plot (we leave out the plot_func argument when plt.plot is
     # our goal, because plt.plot is the default!)
-    # plot_hockey_v1(df["attendance"], plot_func = plt.hist)
-    # plot_hockey_v1(bos_vs_ny["total_goals"])
+    plot_hockey_v1(df["attendance"], plot_func = plt.hist)
+    plot_hockey_v1(bos_vs_ny["total_goals"])
 
     # call the second version of our plotting function
     # we call this three times -- a histogram, a line plot, a scatterplot
     # (when we want the line plot using plt.plot, we don't pass an argument
     # for plot_func, b/c plt.plot is the default!)
-    # plot_hockey_v2(df["attendance"], plot_func = plt.hist)
-    # plot_hockey_v2(bos_vs_ny["total_goals"])
-    # plot_hockey_v2(df["home_goal_count"], x_values = df["attendance"],
-    #                plot_func = plt.scatter)
+    plot_hockey_v2(df["attendance"], plot_func = plt.hist)
+    plot_hockey_v2(bos_vs_ny["total_goals"])
+    plot_hockey_v2(df["home_goal_count"], x_values = df["attendance"],
+                   plot_func = plt.scatter)
 
     # call the third version of our plotting function
     # we call this three times -- a histogram, a line plot, a scatterplot
