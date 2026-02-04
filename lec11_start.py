@@ -45,27 +45,31 @@ def plot_hockey_v1(y_values: pd.Series, plot_func: Callable[..., Any] = plt.plot
                 none, just plots
     '''
     plot_func(y_values)
-    plt.
+    plt.plot()
 
 
 
-# def plot_hockey_v2():
-'''
-        Call the given plotting function and plot the values. 
-        In this version, our function takes in both x_values (opt) and y_values (req)
-        plus the particular plotting function to use. This version's constraints:
-            1. no customizations are included here, it just plots the line
-            
-        Params:
-            y_values (pd.Series), the y values to plot
-            x_values (pd.Series), the x values to plot - Optional.  
-            plot_func (Callable[..., Any]), the matplotlib function to use for plotting.
-                defaults to plt.plot
-    
-        Returns: 
-            none, just plots. If x values are not included, then we plot just the
-            y values.
+def plot_hockey_v2(y_values: pd.Series, x_values: Optional[pd.Series] = None, ):
     '''
+            Call the given plotting function and plot the values. 
+            In this version, our function takes in both x_values (opt) and y_values (req)
+            plus the particular plotting function to use. This version's constraints:
+                1. no customizations are included here, it just plots the line
+                
+            Params:
+                y_values (pd.Series), the y values to plot
+                x_values (pd.Series), the x values to plot - Optional.  
+                plot_func (Callable[..., Any]), the matplotlib function to use for plotting.
+                    defaults to plt.plot
+        
+            Returns: 
+                none, just plots. If x values are not included, then we plot just the
+                y values.
+        '''
+    if x_values is not None:
+        plot_func(x_values, y_values)
+    else:
+        plot_func(y_values)
 
 
 # def plot_hockey_v3():
@@ -135,19 +139,19 @@ def main() -> None:
     # we call this three times -- a histogram, a line plot, a scatterplot
     # (when we want the line plot using plt.plot, we don't pass an argument
     # for plot_func, b/c plt.plot is the default!)
-    # plot_hockey_v3(df["attendance"], plot_func = plt.hist, 
-    #                title = "PWHL Attendance over Time (2023-2025)",
-    #                xlabel = "Attendance Range",
-    #                ylabel = "Number of Games")
+    plot_hockey_v3(df["attendance"], plot_func = plt.hist, 
+                   title = "PWHL Attendance over Time (2023-2025)",
+                   xlabel = "Attendance Range",
+                   ylabel = "Number of Games")
 
-    # plot_hockey_v3(bos_vs_ny["total_goals"], title = "PWHL Boston vs. NY",
-    #                xlabel = "Game Number",
-    #                ylabel = "Total Goals")
+    plot_hockey_v3(bos_vs_ny["total_goals"], title = "PWHL Boston vs. NY",
+                   xlabel = "Game Number",
+                   ylabel = "Total Goals")
 
-    # plot_hockey_v3(df["home_goal_count"], x_values = df["attendance"], 
-    #                plot_func = plt.scatter, title = "PWHL Attendance v. Home Goals",
-    #                xlabel = "Attendance",
-    #                ylabel = "Goals by Home Team")
+    plot_hockey_v3(df["home_goal_count"], x_values = df["attendance"], 
+                   plot_func = plt.scatter, title = "PWHL Attendance v. Home Goals",
+                   xlabel = "Attendance",
+                   ylabel = "Goals by Home Team")
 
 
 if __name__ == "__main__":
