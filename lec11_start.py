@@ -104,6 +104,11 @@ def main() -> None:
     width = 0.35
     plt.bar(x_pos - width / 2, bos_home["home_goal_count"])
     plt.bar(x_pos + width / 2, bos_home["visiting_goal_count"])
+    plt.xlabel("Game Number")
+    plt.ylabel("Number of Goals")
+    plt.title("NY @ BOS Number of Goals per Team")
+    plt.legend()
+    plt.xticks(x_pos, bos_home["game_number"].astype(str).tolist())
     plt.show()
 
     # call the first version of our plotting function
