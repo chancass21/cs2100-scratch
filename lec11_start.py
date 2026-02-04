@@ -45,11 +45,11 @@ def plot_hockey_v1(y_values: pd.Series, plot_func: Callable[..., Any] = plt.plot
                 none, just plots
     '''
     plot_func(y_values)
-    plt.plot()
+    plt.show()
 
 
 
-def plot_hockey_v2(y_values: pd.Series, x_values: Optional[pd.Series] = None, ):
+def plot_hockey_v2(y_values: pd.Series, x_values: Optional[pd.Series] = None) -> None:
     '''
             Call the given plotting function and plot the values. 
             In this version, our function takes in both x_values (opt) and y_values (req)
@@ -72,24 +72,28 @@ def plot_hockey_v2(y_values: pd.Series, x_values: Optional[pd.Series] = None, ):
         plot_func(y_values)
 
 
-# def plot_hockey_v3():
-'''
-        Call the given plotting function and plot the values. 
-        In this version, our function takes in both x_values (opt) and y_values (req)
-        plus the particular plotting function to use. 
-        This version's improvements... can pass in additional arguments to perfect the plot!
-            
-        Params:
-            y_values (pd.Series), the y values to plot
-            x_values (pd.Series), the x values to plot - Optional.  
-            plot_func (Callable[..., Any]), the matplotlib function to use for plotting,
-                defaults to plt.plot
-            kwargs - additional arguments to pass to the plotting function for customization
-    
-        Returns: 
-            none, just plots. If x values are not included, then we plot just the
-            y values.
+def plot_hockey_v3(y_values: pd.Series, x_values: Optional[pd.Series] = None, plot_func: Callable[..., Any] = plt.plot) -> None:
     '''
+            Call the given plotting function and plot the values. 
+            In this version, our function takes in both x_values (opt) and y_values (req)
+            plus the particular plotting function to use. 
+            This version's improvements... can pass in additional arguments to perfect the plot!
+                
+            Params:
+                y_values (pd.Series), the y values to plot
+                x_values (pd.Series), the x values to plot - Optional.  
+                plot_func (Callable[..., Any]), the matplotlib function to use for plotting,
+                    defaults to plt.plot
+                kwargs - additional arguments to pass to the plotting function for customization
+        
+            Returns: 
+                none, just plots. If x values are not included, then we plot just the
+                y values.
+        '''
+    if x_values is not None:
+        plot_func(x_values, y_values)
+    else:
+        plot_func(y_values)
  
     
 def main() -> None:
