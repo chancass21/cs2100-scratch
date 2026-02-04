@@ -116,16 +116,23 @@ else:
 # 14. we currently have periods (normally 3, but could be 4, 5, or 6). 
 # # add a new column, game_length, n, using the following dictionary and map()
 game_length = {3 : "standard", 4 : "one ot", 5 : "two ot", 6 : "three ot"}
-
+df_copy["game_length"] = df_copy["periods"].map(game_length)
+print("\nPrintint out dataframe with new game_length column")
+print(df_copy[["periods", "game-length"]].head(15))
 
 # 15. Filter the dataframe so we just see Boston vs New York
 # (either could be home/visiting)
 # (Boston team is 1, NY is 4)
-teams = [1,4]
+teams = [1, 4]
+bos_v_ny = df_copy[df_copy["home_team"].isin(teams) 
+                   & df_copy["visiting_team"].isin(teams)]
+
+print(f"\nWe used isin() and & operator to learn that "
+      "{len(bos_v_ny)} games featured Boston vs NY")
 
 # 16. Pick a couple of columns and see if they correlate or nah
 r = np.corrcoef(df_copy["attendance"], df_copy["home_goal_count"])
 print("The r value of attendance, home goal count... numpy gives us"
-      "a table [[a,b], [c, d]], am d are both 1, 0, b, c are both the"
-      "correlation coefficient between attendance and goals\n")
-
+"a table [[a, b] [c, d]]. a, d are both 1.0 b, c are both the"
+"correlation coefficient between attendance and goals\n")
+print(r)
