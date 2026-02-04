@@ -26,24 +26,23 @@ import matplotlib.pyplot as plt
 
 GAMEFILE = "all_games.csv"
 
-def plot_hockey_v1() -> None: 
-    '''
-    V1 of plotting some hockey data. In this version, our function
-    takes in just y_values as a parameter, a pd.Series, 
-    plus the particular plotting function to use. This version's constraints:
-        1. can only do plot functions that take y_values only, with no 
-        x_values (plt.plot() and plt.hist())
-        2. no customizations are included here, it just plots the line
-                
-    Params:
+# def plot_hockey_v1():
+'''
+        V1 of plotting some hockey data. In this version, our function
+        takes in just y_values as a parameter, a pd.Series, 
+        plus the particular plotting function to use. This version's constraints:
+            1. can only do plot functions that take y_values only, with no 
+               x_values (plt.plot() and plt.hist())
+            2. no customizations are included here, it just plots the line
+            
+        Params:
             y_values (pd.Series), the y values to plot
             plot_func (Callable[..., Any]), the matplotlib function to use for plotting,
                 defaults to plt.plot
-            
+        
         Returns: 
             none, just plots
-            '''
-    pass
+    '''
 
 
 # def plot_hockey_v2():
