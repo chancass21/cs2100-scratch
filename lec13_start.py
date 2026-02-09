@@ -23,8 +23,8 @@ from PIL import Image
 import matplotlib.pyplot as plt
 import requests
 
-API_KEY = "DEMO_KEY"
-BASE_URL = "lssD8QoET1dPRQSC0NHmWkmWZHGI2bT0mpNqfEI8"
+API_KEY = "lssD8QoET1dPRQSC0NHmWkmWZHGI2bT0mpNqfEI8"
+BASE_URL = "https://api.nasa.gov/planetary/apod"
 DATES= ["2026-01-07", "2025-10-31", "2000-01-01",
         "2014-01-14", "2026-02-09", "2014-07-11"]
 
