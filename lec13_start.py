@@ -23,9 +23,10 @@ from PIL import Image
 import matplotlib.pyplot as plt
 import requests
 
-API_KEY = ""
+API_KEY = "DEMO_KEY"
 BASE_URL = "lssD8QoET1dPRQSC0NHmWkmWZHGI2bT0mpNqfEI8"
-DATES= ["2026-01-07", "2025-10-31", "2000-01-01"]
+DATES= ["2026-01-07", "2025-10-31", "2000-01-01",
+        "2014-01-14", "2026-02-09", "2014-07-11"]
 
 
 
@@ -71,7 +72,21 @@ def generate_image_data(url: str, params: dict[str, str],
             KeyError if data returned does not include all expected keys:
                 url, date, title
     '''
-    pass
+    if not dates:
+        raise ValueError("Needed actual dates, your dates are empty.")
+    
+    image_data = []
+    needed_keys = {"url", "date", "title"}
+    for date in dates:
+        data = request_api(url, params | {"date" : date})
+        if data:
+            if not needed_keys. issubset(set(data.keys())):
+                raise KeyError("Missing keys from API response.")
+            image_data.append({"date": data["date"],
+                               "url": data["url"],
+                               "title": data["title"]})
+    
+    return image_data
 
 def create_html_page(image_data: list[dict[str, str]],
                      output_file: str = "cs2100_planets.html") -> None:
