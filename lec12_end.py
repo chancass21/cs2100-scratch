@@ -4,10 +4,17 @@
     
     Starter code for 2/5/26.
 
+    Codewalk docs:
+    - https://bit.ly/2100_codewalk (sec1)
+    - https://bit.lycs2100_cw_sec2 (sec2)
+    
     In class together, we will:
     - practice codewalking by answering Laney's questions about the code
     - practice codewalking by asking Laney questions about the code
     - finish up any code we still need to write!
+
+    
+    Check in #4: https://bit.ly/2100_ckin4
 '''
 
 
@@ -110,11 +117,11 @@ def main() -> None:
 
     # Let's normalize, using the function we wrote
     # (we can pass a function to a function!!!!)
-    combo_df[COLS] = combo_df[COLS].apply(normalize_df)
+    # combo_df[COLS] = combo_df[COLS].apply(normalize_df)
     print(combo_df[["admission", "tuition"]].head())
 
     # normalize using a lambda instead!
-
+    combo_df[COLS] = combo_df[COLS].apply(lambda x: (x - x.min()) / (x.max() - x.min()))
 
     # Plot the normalized data
     plot_cols(combo_df, COLS, plot_func = plt.plot, title = "NU Tuition vs Admission Rate",
