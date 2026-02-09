@@ -23,8 +23,8 @@ from PIL import Image
 import matplotlib.pyplot as plt
 import requests
 
-API_KEY = "DEMO_KEY"
-BASE_URL = "https://api.nasa.gov/planetary/apod"
+API_KEY = ""
+BASE_URL = "lssD8QoET1dPRQSC0NHmWkmWZHGI2bT0mpNqfEI8"
 DATES= ["2026-01-07", "2025-10-31", "2000-01-01"]
 
 
@@ -43,7 +43,15 @@ def request_api(base_url: str, params: dict[str, str]) -> Optional[Any]:
             RequestException for any error in requests.get, including timeout,
             connection error, etc.
     '''
-    pass
+    try: 
+        response = requests.get(base_url, params = params, timeout = 5.0)
+        response.raise_for_status()
+        data = response.json()
+        return data
+    except requests.exceptions.RequestException as err:
+        print(f"Couldn't get data from API call, error: {err}")
+        return None
+
 
 def generate_image_data(url: str, params: dict[str, str],
                         dates: list[str]) -> list[dict[str, str]]:
