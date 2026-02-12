@@ -10,7 +10,7 @@
     the same no matter what is contained in their list/set/tuple/dictionary :)
 
     We'll work together on a few them during class, and then run the tests
-    in test_lec14.py to make sure everything works as expected.
+    in test_review_q2.py to make sure everything works as expected.
 
     Pick your favorites... (starred ones are MOST relevant for quiz 2)
     1. **create_email (practice with default params and strings)
@@ -27,7 +27,7 @@ from typing import Any
 
 def create_email(recipient: str, subject: str = "No Subject",
                  sender: str = "noreply@northeastern.edu") -> str:
-    ''' returend a string formatted for an email message
+    ''' return a string formatted for an email message
     
         parameters:
             recipient (str), the email address to send to (REQUIRED)
@@ -42,7 +42,11 @@ def create_email(recipient: str, subject: str = "No Subject",
         raises:
             ValueError if recipient is empty string
      '''
-    pass
+    if not recipient:
+        raise ValueError("Need recipient to send an email")
+    return str(f"From: {sender}\n"
+               f"To: {recipient}\n"
+               f"Subject: {subject}")
 
 def normalize_lst(lst: list[float]) -> list[float]:
     ''' normalize a list of floats using min-max scaling.
@@ -57,7 +61,13 @@ def normalize_lst(lst: list[float]) -> list[float]:
             value error if list has fewer than two elements
             value error if max and min are same value
     '''
-    pass
+    if len(lst) < 2:
+        raise ValueError("List too short to normalize")
+    mx = max(lst)
+    mn = min(lst)
+    if mx == mn:
+        raise ValueError("Can't normalize a list where max == min")
+    return [(x - mn) / (mx - mn) for x in lst ]
 
 def dedupe(lst: list[Any]) -> list[Any]:
     ''' remove duplicates from the given list
@@ -71,7 +81,9 @@ def dedupe(lst: list[Any]) -> list[Any]:
         raises:
             value error if list is empty
     '''
-    pass
+    if not lst:
+        raise ValueError("Can't dedupe an empty list")
+    return list(set(lst))
 
 def find_common(lst1: list[Any], lst2: list[Any]) -> set[Any]:
     ''' find common elements between two lists
@@ -85,7 +97,9 @@ def find_common(lst1: list[Any], lst2: list[Any]) -> set[Any]:
         raises:
             value error if either list is empty
     '''
-    pass
+    if not lst1 or not lst2:
+        raise ValueError("Can't find common elements in empty list")
+    return set(lst1) & set(lst2)
 
 def swap_pairs(lst: list[tuple[Any, Any]]) -> list[tuple[Any, Any]]:
     ''' swap pairs of tuples in the given list (e.g., [(1, 2), (3, 4)] -> [(2,1), (4,3)]
@@ -100,7 +114,9 @@ def swap_pairs(lst: list[tuple[Any, Any]]) -> list[tuple[Any, Any]]:
         raises:
             value error if the given list is empty
     '''
-    pass
+    if not lst:
+        raise ValueError("Can't swap values in an empty list!")
+    return [(b, a) for (a, b) in lst]
 
 
 def has_required(avail: set[Any], req: set[Any]) -> bool:
@@ -117,7 +133,9 @@ def has_required(avail: set[Any], req: set[Any]) -> bool:
         raises:
             value error if either set is empty
     '''
-    pass
+    if not avail or not req:
+        raise ValueError("Both sets must be non-empty!")
+    return set(req).issubset(avail)
 
 
 def get_seconds(person: str, connections: dict[str, list[str]]) -> set[str]:
@@ -140,7 +158,14 @@ def get_seconds(person: str, connections: dict[str, list[str]]) -> set[str]:
             valueError if dictionary is empty
             valueError if person is the empty string
     '''
-    pass
+    if not connections or not person:
+        raise ValueError("Need the person's name and the dictionary of connections")
+    second_level = set()
+    for friends in connections.values():
+        for connect_2 in friends:
+            if connect_2 not in connections and connect_2 != person:
+                second_level.add(connect_2)
+    return second_level
 
 #     write a class to represent a Book. It should have attributes for
 #     title, author, and number of pages read.
@@ -156,4 +181,17 @@ def get_seconds(person: str, connections: dict[str, list[str]]) -> set[str]:
 
 class Book:
     ''' class to represent a book '''
-    pass
+    def __init__(self, title: str = "moby dick", author: str = "melville", pages: int = 0):
+        ''' create a Book object '''
+        self.title = title
+        self.author = author
+        self.pages_read = pages
+
+    def increase_pages(self, incr: int) -> None:
+        ''' increase pages read by the given amount. Do nothing if incr < 1 '''
+        if incr >= 1:
+            self.pages_read += incr
+
+    def __str__(self) -> str:
+        ''' return a string version of the Book object '''
+        return f"Read so far: {self.pages_read} pages"
