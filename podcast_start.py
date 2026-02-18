@@ -37,10 +37,8 @@ class Podcast:
             title: The podcast title
             host: The podcast host names
         '''
-        if not title or not host:
-            raise ValueError("title and host can't be empty string")
-        self._title = title 
-        self._host = host
+        self.title = title # calls the setter; validates for empty string
+        self.host = host # calls the setter; validates for empty string
         self._episodes: list[str] = []
         self.__total_duration = 0
 
@@ -63,6 +61,17 @@ class Podcast:
             raise ValueError("Title must be a non-empty string")
         self._title = value
 
+    @property
+    def host(self) -> None:
+        '''Returns the internal attribute, host.'''
+        return self._host
+    
+    @host.setter
+    def host(self, value: str) -> None:
+        '''Updates the host name after validating.'''
+        if not value:
+            raise ValueError("host name must not be empty string.")
+        self._host = value
 
 
     def _validate_duration(self, duration: int) -> None:
@@ -77,6 +86,16 @@ class Podcast:
         if duration <= 0:
             raise ValueError("Episode duration must be a positive number")
    
+    def add_episode(self, ep_name: str, length: int) -> None:
+        '''Add an episode by name and duration'''
+        self._validate_duration(length)
+        self._episodes.append(ep_name)
+        self.__total_duration += length
+
+    def __len__(self) -> int:
+        '''Returns the number of episodes.'''
+        return len(self._episodes)
+
     def __str__(self) -> str:
         ''' Return string representation of the podcast ''' 
         return str(f"{self._title} hosted by {self._host}, with "
