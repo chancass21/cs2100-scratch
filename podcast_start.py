@@ -23,6 +23,8 @@
    * add_episode method so we can add episodes to the podcast
 '''
 
+# pc = Podcast(host = "Redhanded", title = "Hannah and Suruthi")
+# pc.host = ""
 
 class Podcast:
     ''' Class for a podcast, which has a title, host, episodes, and total duration '''
