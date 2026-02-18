@@ -23,8 +23,9 @@
    * add_episode method so we can add episodes to the podcast
 '''
 
-# pc = Podcast(host = "Redhanded", title = "Hannah and Suruthi")
+# pc = Podcast(host = "Hannah and Suruthi", title = "Redhanded")
 # pc.host = ""
+# should make an error for empty host
 
 class Podcast:
     ''' Class for a podcast, which has a title, host, episodes, and total duration '''
