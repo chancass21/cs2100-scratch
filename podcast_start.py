@@ -30,7 +30,7 @@
 class Podcast:
     ''' Class for a podcast, which has a title, host, episodes, and total duration '''
 
-    def __init__(self, title: str, host: str):
+    def __init__(self, title: str, host: str) -> None:
         ''' Initialize a podcast with title and host
         
         Parameters:
