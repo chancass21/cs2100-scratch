@@ -2,7 +2,11 @@
     Create some podcasts for practice and use some getters and setters :)
 '''
 
+<<<<<<< HEAD
 from podcast_end import Podcast
+=======
+from podcast import Podcast
+>>>>>>> 9cd1e4d13fd8d26e4d38546f06445aa0d3d4dc83
 
 def main() -> None:
     ''' create a few podcasts for examples, add episodes and print them '''
