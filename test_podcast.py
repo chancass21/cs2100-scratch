@@ -3,11 +3,7 @@
 '''
 
 import unittest
-<<<<<<< HEAD
-from podcast_main import Podcast
-=======
 from podcast import Podcast
->>>>>>> 9cd1e4d13fd8d26e4d38546f06445aa0d3d4dc83
 
 class TestPodcast(unittest.TestCase):
     ''' test the podcast class and all the visibility access '''
