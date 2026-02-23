@@ -4,8 +4,8 @@
 
 
 import unittest
-from spotify_content import SpotifyContent
-from podcast import Podcast
+from spotify_content_end import SpotifyContent
+from podcast_end import Podcast
 
 class TestSpotify(unittest.TestCase):
     ''' test the supeclass SpotfiyContent '''
