@@ -3,7 +3,7 @@
 '''
 
 import unittest
-from podcast import Podcast
+from podcast_main import Podcast
 
 class TestPodcast(unittest.TestCase):
     ''' test the podcast class and all the visibility access '''

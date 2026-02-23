@@ -1,44 +1,34 @@
-
-
 '''
+    check-in 6, due  2/20 https://bit.ly/3ZEq3RI
+
    Class to represent a podcast
 
 
-   Starter code for lecture on 2/18/26
+   Completed code from lecture on 2/18/26
 
-
-   The starter code:
-   * has a constructor to instantiate a Podcast object
-            (including three internal attributes (_) and one private attribute (__))
-   * has @property to get the _title attribute from outside the class
-   * has @title.setter to set the _title attribute from outside the class
-   * has _validate_duration (a helper method, _ meaning for internal use)
-   * has __str__ method to return a nicely formatted version of the podcast
-
-
-   We'll add:
+   We added
    * streamline the constructor to work with validation we're already doing
+     (i.e., constructor now calls setters to do validate so it's all in one place)
    * @property and @host.setter for the _host attribute
    * our own __len__  to return the number of episodes so far via len()
    * add_episode method so we can add episodes to the podcast
+     (this does NOT have @propery/setter because it doesn't make
+      sense for this attribute)
 '''
 
-# pc = Podcast(host = "Hannah and Suruthi", title = "Redhanded")
-# pc.host = ""
-# should make an error for empty host
 
 class Podcast:
     ''' Class for a podcast, which has a title, host, episodes, and total duration '''
 
-    def __init__(self, title: str, host: str) -> None:
+    def __init__(self, title: str, host: str):
         ''' Initialize a podcast with title and host
         
         Parameters:
             title: The podcast title
             host: The podcast host names
         '''
-        self.title = title # calls the setter; validates for empty string
-        self.host = host # calls the setter; validates for empty string
+        self.title = title # secret function call to the setter; updates self._title
+        self.host = host # secret function call to the setter; updates self._host
         self._episodes: list[str] = []
         self.__total_duration = 0
 
@@ -50,11 +40,8 @@ class Podcast:
     @title.setter
     def title(self, value: str) -> None:
         ''' validate and set the title of the podcast 
-        
             parameters: value (str), the new title
-
             returns: none
-
             raises: ValueError if string is empty
         '''
         if not value:
@@ -62,38 +49,41 @@ class Podcast:
         self._title = value
 
     @property
-    def host(self) -> None:
-        '''Returns the internal attribute, host.'''
+    def host(self) -> str:
+        ''' return the internal attirubte for host, a string '''
         return self._host
-    
-    @host.setter
-    def host(self, value: str) -> None:
-        '''Updates the host name after validating.'''
-        if not value:
-            raise ValueError("host name must not be empty string.")
-        self._host = value
 
+    @host.setter 
+    def host(self, new_name: str) -> None:
+        ''' set the host name to new value
+            parameters: new host name, a string
+            returns: none
+            raises: value error if new_name is empty string 
+        '''
+        if not new_name:
+            raise ValueError("Host name cannot be empty")
+        self._host = new_name
 
     def _validate_duration(self, duration: int) -> None:
         ''' validate that duration is a postive number
-
             parameters: duration, an int, duration of a single episode in minutes
-
             returns: none
-
             raises: value error if single-ep duration is not positive
         '''
         if duration <= 0:
             raise ValueError("Episode duration must be a positive number")
-   
-    def add_episode(self, ep_name: str, length: int) -> None:
-        '''Add an episode by name and duration'''
-        self._validate_duration(length)
+
+    def add_episode(self, ep_name: str, duration: int) -> None:
+        ''' add episode to the podcast, validating duration first
+            parameters: ep name, a string, and duration an int 
+            returns: nothing
+        '''
+        self._validate_duration(duration)
+        self.__total_duration += duration
         self._episodes.append(ep_name)
-        self.__total_duration += length
 
     def __len__(self) -> int:
-        '''Returns the number of episodes.'''
+        ''' return the length of a podcast, so obj creator can do len(podcast) '''
         return len(self._episodes)
 
     def __str__(self) -> str:
