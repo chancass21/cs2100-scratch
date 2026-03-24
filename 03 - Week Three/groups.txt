@@ -1,0 +1,2 @@
+training group,Laney,Nate,Rasika,Amy
+finishers group,Laney,Rasika,Amy

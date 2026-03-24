@@ -1,0 +1,4 @@
+Race,Hours,Mins,Seconds
+Cambridge Classic 5k,0,21,58
+Boston Women's 10k,0,46,11
+Philadephia Marathon,4,6,31
