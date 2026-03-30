@@ -46,7 +46,16 @@ class Node:
         Args:
             other: The other node to union with
         '''
-        
+        rep1 = self.find_set()
+        rep2 = other.find_set()
+
+        if rep1.rank == rep2.rank:
+            rep1.rank = 1
+            rep2.parent = rep1
+        elif rep1.rank < rep2.rank:
+            rep1.parent = rep2
+            else:
+            rep2.parent = rep1
 
 
     def __str__(self) -> str:
