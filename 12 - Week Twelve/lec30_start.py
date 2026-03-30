@@ -116,7 +116,7 @@ def main() -> None:
     ]
     mst: set[Any] =  set()
 
-    for
+    for a in A:
 
 if __name__ == "__main__":
     main()
