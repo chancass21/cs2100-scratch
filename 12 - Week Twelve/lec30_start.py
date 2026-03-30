@@ -33,7 +33,9 @@ class Node:
         Returns:
             The representative node of the set
         '''
-
+        if self.parent == self:
+            return self
+        return self.parent.find_set()
 
     def union(self, other: Node) -> None:
         '''
@@ -44,6 +46,7 @@ class Node:
         Args:
             other: The other node to union with
         '''
+        
 
 
     def __str__(self) -> str:
